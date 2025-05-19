@@ -1,0 +1,13 @@
+services:
+  traffmonetizer:
+    image: traffmonetizer/cli_v2:latest
+    container_name: traffmonetizer
+    restart: unless-stopped
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - TM_TOKEN=${TM_TOKEN}
+    volumes:
+      - ./data:/app/data
+    command: start accept --token ${TM_TOKEN}
